@@ -7,48 +7,8 @@
     android:orientation="vertical"
     tools:context=".ChooseEnviroment">
 
-    <TextView
-        android:id="@+id/textView"
+    <ListView
+        android:id="@+id/lvEnvi"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="1.Supermarket"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <ImageButton
-        android:id="@+id/ibSuper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="2.Fast Food"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <ImageButton
-        android:id="@+id/ibFast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="3.MRT"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-    <ImageButton
-        android:id="@+id/ibMrt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>

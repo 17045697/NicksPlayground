@@ -41,6 +41,7 @@ public class PlayScene extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         final int scene = getIntent.getIntExtra("scene", -1);
+        Log.d("ttt", String.valueOf(scene));
 
         btnQuiz.setOnClickListener(new View.OnClickListener() {
             @Override

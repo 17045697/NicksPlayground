@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -16,88 +17,63 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
 
 public class ChooseEnviroment extends AppCompatActivity {
 
-    ImageButton ibSuper;
-    ImageButton ibFast;
-    ImageButton ibMrt;
+    ListView lvEnvi;
+    ArrayList<Environment> alEnvironmentList;
+    ArrayAdapter<Environment> aaEnvironment;
     AsyncHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_enviroment);
-
-        ibSuper = findViewById(R.id.ibSuper);
-        ibFast = findViewById(R.id.ibFast);
-        ibMrt = findViewById(R.id.ibMrt);
+        lvEnvi = findViewById(R.id.lvEnvi);
         client = new AsyncHttpClient();
+    }
 
-        ibSuper.setImageResource(R.drawable.supermarket);
-        ibFast.setImageResource(R.drawable.fastfood);
-        ibMrt.setImageResource(R.drawable.mrt);
-
-
-        ibSuper.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        alEnvironmentList = new ArrayList<Environment>();
+        final EnvironmentAdapter aaEnvironment = new EnvironmentAdapter(this,R.layout.envi_row,alEnvironmentList);
+        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getEnvironment.php", new JsonHttpResponseHandler(){
             @Override
-            public void onClick(View view) {
-                int i = 1;
-                Intent intent = new Intent(ChooseEnviroment.this,ChooseScene.class);
-                intent.putExtra("id", i);
-                startActivity(intent);
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response){
 
-            }
-        });
+                try{
+                    for (int i = 0; i < response.length(); i++){
+                        JSONObject jsonObj = response.getJSONObject(i);
+                        int id = jsonObj.getInt("e_id");
+                        String name = jsonObj.getString("envi_description");
+                        String img = jsonObj.getString("image");
+                        Environment environment = new Environment(id,img,name);
+                        alEnvironmentList.add(environment);
+                    }
 
-        ibFast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
 
-                int i = 2;
-                Intent intent = new Intent(ChooseEnviroment.this,ChooseScene.class);
-                intent.putExtra("id", i);
-                startActivity(intent);
+                lvEnvi.setAdapter(aaEnvironment);
 
-            }
-        });
+                lvEnvi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent i2 = new Intent(ChooseEnviroment.this,ChooseScene.class);
+                        i2.putExtra("environment",i);
+                        Log.d("tess", String.valueOf(i));
+                        startActivity(i2);
+                    }
+                });
 
-        ibMrt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int i = 3;
-                Intent intent = new Intent(ChooseEnviroment.this,ChooseScene.class);
-                intent.putExtra("id", i);
-                startActivity(intent);
-            }
+            }//end onSuccess
         });
     }
 
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getEnvironment.php", new JsonHttpResponseHandler(){
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray response){
-//
-//                try{
-//                    Log.i("magic", response.toString());
-//                    for (int i = 0; i < response.length(); i++){
-//
-//                        JSONObject jsonObj = response.getJSONObject(i);
-//                        String description = jsonObj.getString("envi_description");
-//
-//
-//                    }
-//
-//                }catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }//end onSuccess
-//        });
-//    }
 }

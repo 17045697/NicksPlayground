@@ -34,6 +34,10 @@ public class ChooseScene extends AppCompatActivity {
         setContentView(R.layout.activity_choose_scene);
         lvScene = findViewById(R.id.lvScene);
         client = new AsyncHttpClient();
+        Intent getintent = getIntent();
+        int id = getintent.getIntExtra("environment", -1);
+        int envi_id = id + 1;
+        Log.i("testt", String.valueOf(envi_id));
     }
 
     @Override
@@ -66,6 +70,7 @@ public class ChooseScene extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Intent i2 = new Intent(ChooseScene.this,PlayScene.class);
                         i2.putExtra("scene",i);
+                        Log.d("tess", String.valueOf(i));
                         startActivity(i2);
                     }
                 });
