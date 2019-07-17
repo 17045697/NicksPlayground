@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                                 boolean status = response.getBoolean("authenticated");
                                 if (status) {
                                     int id = response.getInt("user_id");
-                                    Intent intent = new Intent(getBaseContext(), ChooseEnviroment.class);
+                                    Intent intent = new Intent(getBaseContext(), ChooseClass.class);
                                     intent.putExtra("id", id);
                                     startActivity(intent);
                                 } else {
