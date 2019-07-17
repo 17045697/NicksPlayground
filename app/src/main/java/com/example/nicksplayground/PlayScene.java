@@ -39,16 +39,18 @@ public class PlayScene extends AppCompatActivity {
         btnQuiz = findViewById(R.id.btnSkip);
         tvSubtitles = findViewById(R.id.textViewSubs);
 
+        Intent getIntent = getIntent();
+        final int scene = getIntent.getIntExtra("scene", -1);
+
         btnQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PlayScene.this,QuizPage.class);
+                intent.putExtra("id", scene);
                 startActivity(intent);
             }
         });
 
-        Intent getIntent = getIntent();
-        String scene = getIntent.getStringExtra("scene");
 
         String fullScreen =  getIntent().getStringExtra("fullScreenInd");
         if("y".equals(fullScreen)){
@@ -70,8 +72,8 @@ public class PlayScene extends AppCompatActivity {
             }
         });
 
-        if(scene.equalsIgnoreCase("0")){
-            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.market;
+        if(scene == 0){
+            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/fastfood.mp4";
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
@@ -80,7 +82,7 @@ public class PlayScene extends AppCompatActivity {
             vw.setMediaController(mediaController);
             vw.start();
 
-        }else if(scene.equalsIgnoreCase("1")){
+        }else if(scene == 1){
             String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.fastfood;
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
