@@ -27,6 +27,7 @@ public class ChooseEnviroment extends AppCompatActivity {
     ArrayList<Environment> alEnvironmentList;
     ArrayAdapter<Environment> aaEnvironment;
     AsyncHttpClient client;
+    String envi_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class ChooseEnviroment extends AppCompatActivity {
                         String img = jsonObj.getString("image");
                         Environment environment = new Environment(id,img,name);
                         alEnvironmentList.add(environment);
+                        envi_name = name;
                     }
 
                 }catch (JSONException e){
@@ -66,7 +68,7 @@ public class ChooseEnviroment extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Intent i2 = new Intent(ChooseEnviroment.this,ChooseScene.class);
                         i2.putExtra("environment",i);
-                        Log.d("tess", String.valueOf(i));
+                        i2.putExtra("name",envi_name);
                         startActivity(i2);
                     }
                 });

@@ -15,33 +15,42 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Locale;
 
+import cz.msebera.android.httpclient.Header;
+
 public class PlayScene extends AppCompatActivity {
 
     private static final String TAG = "";
     private VideoView vw;
     private MediaController mediaController;
-    TextView tvSubtitles;
     Button btnQuiz;
+    AsyncHttpClient client;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_scene);
+        client = new AsyncHttpClient();
         vw = findViewById(R.id.vw);
         btnQuiz = findViewById(R.id.btnSkip);
-        tvSubtitles = findViewById(R.id.textViewSubs);
 
         Intent getIntent = getIntent();
         final int scene = getIntent.getIntExtra("scene", -1);
-        Log.d("ttt", String.valueOf(scene));
 
         btnQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +60,6 @@ public class PlayScene extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         String fullScreen =  getIntent().getStringExtra("fullScreenInd");
         if("y".equals(fullScreen)){
@@ -74,7 +82,7 @@ public class PlayScene extends AppCompatActivity {
         });
 
         if(scene == 0){
-            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/fastfood.mp4";
+            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/market.mp4";
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
@@ -84,7 +92,7 @@ public class PlayScene extends AppCompatActivity {
             vw.start();
 
         }else if(scene == 1){
-            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.fastfood;
+            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/fastfood.mp4";
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
@@ -92,7 +100,7 @@ public class PlayScene extends AppCompatActivity {
             vw.setMediaController(mediaController);
             vw.start();
         }else{
-            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.mrt;
+            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/mrt.mp4";
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
@@ -100,8 +108,6 @@ public class PlayScene extends AppCompatActivity {
             vw.setMediaController(mediaController);
             vw.start();
         }
-
-
 
     }
 

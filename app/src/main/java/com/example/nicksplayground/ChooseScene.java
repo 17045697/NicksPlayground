@@ -35,9 +35,9 @@ public class ChooseScene extends AppCompatActivity {
         lvScene = findViewById(R.id.lvScene);
         client = new AsyncHttpClient();
         Intent getintent = getIntent();
-        int id = getintent.getIntExtra("environment", -1);
-        int envi_id = id + 1;
-        Log.i("testt", String.valueOf(envi_id));
+        int e_id = getintent.getIntExtra("environment", -1);
+        int envi_id = e_id + 1;
+        String envi_name = getintent.getStringExtra("name");
     }
 
     @Override
@@ -45,6 +45,7 @@ public class ChooseScene extends AppCompatActivity {
         super.onResume();
         alSceneList = new ArrayList<Scene>();
         final SceneAdapter aaScene = new SceneAdapter(this, R.layout.scene_row,alSceneList);
+        //param to get name and check via id
         client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php", new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response){
