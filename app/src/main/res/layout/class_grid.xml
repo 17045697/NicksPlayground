@@ -8,23 +8,14 @@
         android:id="@+id/tvClassName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/tvTiming"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <TextView
-        android:id="@+id/tvYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvDay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 </LinearLayout>

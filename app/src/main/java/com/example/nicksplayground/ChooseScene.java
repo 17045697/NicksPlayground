@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+
 
 public class ChooseScene extends AppCompatActivity {
     ListView lvScene;
     ArrayList<Scene> alSceneList;
     ArrayAdapter<Scene> aaScene;
     AsyncHttpClient client;
+    String envi_name = "";
 
 
     @Override
@@ -35,9 +39,7 @@ public class ChooseScene extends AppCompatActivity {
         lvScene = findViewById(R.id.lvScene);
         client = new AsyncHttpClient();
         Intent getintent = getIntent();
-        int e_id = getintent.getIntExtra("environment", -1);
-        int envi_id = e_id + 1;
-        String envi_name = getintent.getStringExtra("name");
+        envi_name = getintent.getStringExtra("name");
     }
 
     @Override
@@ -45,8 +47,9 @@ public class ChooseScene extends AppCompatActivity {
         super.onResume();
         alSceneList = new ArrayList<Scene>();
         final SceneAdapter aaScene = new SceneAdapter(this, R.layout.scene_row,alSceneList);
-        //param to get name and check via id
-        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php", new JsonHttpResponseHandler(){
+        RequestParams params = new RequestParams();
+        params.add("envi_name", envi_name);
+        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php",params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response){
 

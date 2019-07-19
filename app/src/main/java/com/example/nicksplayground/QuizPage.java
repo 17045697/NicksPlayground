@@ -62,11 +62,15 @@ public class QuizPage extends AppCompatActivity {
                                 result += 1;
                                 tvResult.setText("");
                                 Log.i("quiz", String.valueOf(result));
+                                Intent intent = new Intent(QuizPage.this,ResultPage.class);
+                                intent.putExtra("score",result);
+                                startActivity(intent);
                             }else{
                                 tries += 1;
                                 tvResult.setText("Try Again");
 
                             }
+
                         }
                     });
 
@@ -78,10 +82,15 @@ public class QuizPage extends AppCompatActivity {
                                 result += 1;
                                 Log.i("quiz2", String.valueOf(result));
                                 tvResult.setText("");
+                                Intent intent = new Intent(QuizPage.this,ResultPage.class);
+                                intent.putExtra("score",result);
+                                startActivity(intent);
                             }else{
                                 tries += 1;
                                 tvResult.setText("Try Again");
                             }
+
+
                         }
                     });
 

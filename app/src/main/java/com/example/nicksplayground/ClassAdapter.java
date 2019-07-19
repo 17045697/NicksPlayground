@@ -11,12 +11,14 @@ public class ClassAdapter extends BaseAdapter {
 
     Context context;
     private final String [] lesson;
+    private final String [] timing;
     View view;
     LayoutInflater layoutInflater;
 
-    public ClassAdapter(Context context, String[] lesson) {
+    public ClassAdapter(Context context, String[] lesson, String[] timing) {
         this.context = context;
         this.lesson = lesson;
+        this.timing = timing;
     }
 
     @Override
@@ -44,7 +46,9 @@ public class ClassAdapter extends BaseAdapter {
            view = new View(context);
            view = layoutInflater.inflate(R.layout.class_grid,null);
            TextView lessons = view.findViewById(R.id.tvClassName);
+           TextView timings = view.findViewById(R.id.tvTiming);
            lessons.setText(lesson[position]);
+           timings.setText(timing[position]);
        }
        return view;
     }
