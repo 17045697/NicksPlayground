@@ -1,12 +1,14 @@
 package com.example.nicksplayground;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -20,8 +22,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class QuizPage extends AppCompatActivity {
 
-    TextView tvQns, tvResult, tvAns1, tvAns2;
+    TextView tvQns, tvResult;
     private AsyncHttpClient client;
+    private MediaPlayer mediaPlayer;
+    Button btnQns1,btnQns2;
     int result = 0;
     int tries = 0;
 
@@ -30,13 +34,13 @@ public class QuizPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_page);
         tvQns = findViewById(R.id.tvQuestion);
-        tvAns1 = findViewById(R.id.tvQns1);
-        tvAns2 = findViewById(R.id.tvQns2);
         tvResult = findViewById(R.id.tvResult);
+        btnQns1 = findViewById(R.id.btnQns1);
+        btnQns2 = findViewById(R.id.btnQns2);
+
         Intent intent = getIntent();
         int get = intent.getIntExtra("id", -1);
         final int id = get + 1;
-
         client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("id",id +"");
@@ -49,16 +53,19 @@ public class QuizPage extends AppCompatActivity {
                     String ans1 = jsonObj.getString("answer_1");
                     String ans2 = jsonObj.getString("answer_2");
                     final String ans = jsonObj.getString("correct_answer");
-                    Log.i("testing", ans);
                     tvQns.setText(qns);
-                    tvAns1.setText(ans1);
-                    tvAns2.setText(ans2);
+                    btnQns1.setText(ans1);
+                    btnQns2.setText(ans2);
 
-                    tvAns1.setOnClickListener(new View.OnClickListener() {
+                    btnQns1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
                             String num = "1";
                             if (num.equalsIgnoreCase(ans)){
+                                mediaPlayer = (MediaPlayer) MediaPlayer.create(getApplicationContext(),R.raw.applause);
+                                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mediaPlayer.start();
                                 result += 1;
                                 tvResult.setText("");
                                 Log.i("quiz", String.valueOf(result));
@@ -66,19 +73,24 @@ public class QuizPage extends AppCompatActivity {
                                 intent.putExtra("score",result);
                                 startActivity(intent);
                             }else{
+                                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mediaPlayer.start();
                                 tries += 1;
                                 tvResult.setText("Try Again");
 
                             }
-
                         }
                     });
 
-                    tvAns2.setOnClickListener(new View.OnClickListener() {
+                    btnQns2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             String num = "2";
                             if (num.equalsIgnoreCase(ans)){
+                                mediaPlayer = (MediaPlayer) MediaPlayer.create(getApplicationContext(),R.raw.applause);
+                                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mediaPlayer.start();
                                 result += 1;
                                 Log.i("quiz2", String.valueOf(result));
                                 tvResult.setText("");
@@ -86,11 +98,12 @@ public class QuizPage extends AppCompatActivity {
                                 intent.putExtra("score",result);
                                 startActivity(intent);
                             }else{
+                                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong);
+                                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mediaPlayer.start();
                                 tries += 1;
                                 tvResult.setText("Try Again");
                             }
-
-
                         }
                     });
 

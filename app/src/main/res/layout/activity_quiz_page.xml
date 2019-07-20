@@ -27,20 +27,16 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_light"/>
 
-    <TextView
-        android:id="@+id/tvQns1"
+    <Button
+        android:id="@+id/btnQns1"
         android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tvQns2"
+    <Button
+        android:id="@+id/btnQns2"
         android:layout_width="match_parent"
-        android:layout_height="139dp"
-        android:layout_weight="1"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 </LinearLayout>
