@@ -46,7 +46,7 @@ public class ResultPage extends AppCompatActivity {
                         JSONObject jsonObj = response.getJSONObject(i);
                         String name = jsonObj.getString("student");
                         String place = jsonObj.getString("class");
-                        alStudentList.add(name + place);
+                        alStudentList.add(name);
                     }
 
                 }catch (JSONException e){
@@ -58,9 +58,11 @@ public class ResultPage extends AppCompatActivity {
                 lvStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent i2 = new Intent(ResultPage.this,PlayScene.class);
-                        i2.putExtra("scene",i);
-                        Log.d("tess", String.valueOf(i));
+                        Intent i2 = new Intent(ResultPage.this,SubmitQuizReport.class);
+                        Object o = adapterView.getItemAtPosition(i);
+                        String name = o.toString();
+                        i2.putExtra("student",name);
+                        Log.d("tess", name);
                         startActivity(i2);
                     }
                 });

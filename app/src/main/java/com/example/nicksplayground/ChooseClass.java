@@ -1,6 +1,8 @@
 package com.example.nicksplayground;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,12 @@ public class ChooseClass extends AppCompatActivity {
                 intent.putExtra("class", lesson[position]);
                 intent.putExtra("time", timing[position]);
                 startActivity(intent); // start Intent
+
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ChooseClass.this);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("class", lesson[position]);
+                editor.putString("timing", timing[position]);
+                editor.commit();
             }
         });
 

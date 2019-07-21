@@ -1,8 +1,10 @@
 package com.example.nicksplayground;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +58,12 @@ public class QuizPage extends AppCompatActivity {
                     tvQns.setText(qns);
                     btnQns1.setText(ans1);
                     btnQns2.setText(ans2);
+
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(QuizPage.this);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("quizID", String.valueOf(id));
+                    editor.putString("question", qns);
+                    editor.commit();
 
                     btnQns1.setOnClickListener(new View.OnClickListener() {
                         @Override

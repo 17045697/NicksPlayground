@@ -30,6 +30,7 @@ public class ChooseScene extends AppCompatActivity {
     ArrayAdapter<Scene> aaScene;
     AsyncHttpClient client;
     String envi_name = "";
+    int id = -1;
 
 
     @Override
@@ -40,6 +41,7 @@ public class ChooseScene extends AppCompatActivity {
         client = new AsyncHttpClient();
         Intent getintent = getIntent();
         envi_name = getintent.getStringExtra("name");
+        id = getintent.getIntExtra("environment",-2);
     }
 
     @Override
@@ -47,9 +49,10 @@ public class ChooseScene extends AppCompatActivity {
         super.onResume();
         alSceneList = new ArrayList<Scene>();
         final SceneAdapter aaScene = new SceneAdapter(this, R.layout.scene_row,alSceneList);
-        RequestParams params = new RequestParams();
-        params.add("envi_name", envi_name);
-        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php",params,new JsonHttpResponseHandler(){
+        //RequestParams params = new RequestParams();
+        //String envi_id = String.valueOf(id + 1);
+        //params.add("envi_id", envi_id);
+        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php",new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response){
 
