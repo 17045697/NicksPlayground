@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-    <Space
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="288dp" />
+        android:layout_height="357dp"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/tvUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:background="@android:color/holo_blue_bright"
         android:text="Username:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -25,6 +29,8 @@
         android:id="@+id/etUser"
         android:layout_width="match_parent"
         android:layout_height="47dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName" />
@@ -33,6 +39,8 @@
         android:id="@+id/tvPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:background="@android:color/holo_blue_bright"
         android:text="Password:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -41,14 +49,22 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="44dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:inputType="textPersonName" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="52dp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:background="@android:color/holo_green_light"
         android:text="Login" />
 </LinearLayout>
