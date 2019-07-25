@@ -51,6 +51,7 @@ public class QuizPage extends AppCompatActivity {
                 try {
                     Log.d("testing", id+"");
                     JSONObject jsonObj = (JSONObject) response.get(0);
+                    String qns_id = jsonObj.getString("question_id");
                     String qns = jsonObj.getString("question");
                     String ans1 = jsonObj.getString("answer_1");
                     String ans2 = jsonObj.getString("answer_2");
@@ -62,6 +63,7 @@ public class QuizPage extends AppCompatActivity {
                     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(QuizPage.this);
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("quizID", String.valueOf(id));
+                    editor.putString("questionID", qns_id);
                     editor.putString("question", qns);
                     editor.commit();
 

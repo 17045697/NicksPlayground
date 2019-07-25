@@ -26,7 +26,7 @@ public class ResultPage extends AppCompatActivity {
     ArrayList<String> alStudentList;
     ArrayAdapter<String> aaStudent;
     AsyncHttpClient client;
-
+    String id = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +44,10 @@ public class ResultPage extends AppCompatActivity {
                 try{
                     for (int i = 0; i < response.length(); i++){
                         JSONObject jsonObj = response.getJSONObject(i);
+                        id = jsonObj.getString("student_id");
                         String name = jsonObj.getString("student");
                         String place = jsonObj.getString("class");
+
                         alStudentList.add(name);
                     }
 
@@ -62,7 +64,8 @@ public class ResultPage extends AppCompatActivity {
                         Object o = adapterView.getItemAtPosition(i);
                         String name = o.toString();
                         i2.putExtra("student",name);
-                        Log.d("tess", name);
+                        i2.putExtra("s_id", id);
+                        Log.d("tret", id);
                         startActivity(i2);
                     }
                 });
