@@ -98,6 +98,7 @@ public class PlayScene extends AppCompatActivity {
             vw.requestFocus();
             mediaController.setAnchorView(vw);
             vw.setMediaController(mediaController);
+            vw.addSubtitleSource(getResources().openRawResource(R.raw.en), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
             vw.start();
         }else{
             String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/mrt.mp4";

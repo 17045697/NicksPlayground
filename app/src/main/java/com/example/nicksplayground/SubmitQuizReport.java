@@ -41,6 +41,7 @@ public class SubmitQuizReport extends AppCompatActivity {
         Intent getintent = getIntent();
         String student = getintent.getStringExtra("student");
         final String student_id = getintent.getStringExtra("s_id");
+        Log.i("student_id",student_id);
         String classname = prefs.getString("class","");
         String timing = prefs.getString("timing","");
         final String quizQns = prefs.getString("question","");

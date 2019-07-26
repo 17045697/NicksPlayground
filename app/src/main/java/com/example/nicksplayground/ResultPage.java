@@ -47,7 +47,6 @@ public class ResultPage extends AppCompatActivity {
                         id = jsonObj.getString("student_id");
                         String name = jsonObj.getString("student");
                         String place = jsonObj.getString("class");
-
                         alStudentList.add(name);
                     }
 
@@ -65,7 +64,7 @@ public class ResultPage extends AppCompatActivity {
                         String name = o.toString();
                         i2.putExtra("student",name);
                         i2.putExtra("s_id", id);
-                        Log.d("tret", id);
+                        Log.i("tret", id);
                         startActivity(i2);
                     }
                 });
