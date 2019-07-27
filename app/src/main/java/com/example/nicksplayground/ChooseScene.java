@@ -40,7 +40,7 @@ public class ChooseScene extends AppCompatActivity {
         lvScene = findViewById(R.id.lvScene);
         client = new AsyncHttpClient();
         Intent getintent = getIntent();
-        envi_name = getintent.getStringExtra("name");
+        envi_name = getintent.getStringExtra("id");
         id = getintent.getIntExtra("environment",-2);
     }
 
@@ -52,7 +52,7 @@ public class ChooseScene extends AppCompatActivity {
         //RequestParams params = new RequestParams();
         //String envi_id = String.valueOf(id + 1);
         //params.add("envi_id", envi_id);
-        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php",new JsonHttpResponseHandler(){
+        client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getScenario.php?envi_id=" + id,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response){
 

@@ -82,7 +82,7 @@ public class PlayScene extends AppCompatActivity {
         });
 
         if(scene == 0){
-            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/market.mp4";
+            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.market;
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
@@ -90,6 +90,14 @@ public class PlayScene extends AppCompatActivity {
             vw.addSubtitleSource(getResources().openRawResource(R.raw.en), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
             vw.setMediaController(mediaController);
             vw.start();
+            vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(PlayScene.this,QuizPage.class);
+                    intent.putExtra("id", scene);
+                    startActivity(intent);
+                }
+            });
 
         }else if(scene == 1){
             String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/fastfood.mp4";
@@ -100,14 +108,30 @@ public class PlayScene extends AppCompatActivity {
             vw.setMediaController(mediaController);
             vw.addSubtitleSource(getResources().openRawResource(R.raw.en), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
             vw.start();
+            vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(PlayScene.this,QuizPage.class);
+                    intent.putExtra("id", scene);
+                    startActivity(intent);
+                }
+            });
         }else{
-            String uriPath = "https://nicksplaygroundfyp2019.000webhostapp.com/image/mrt.mp4";
+            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.mrt;
             Uri uri = Uri.parse(uriPath);
             vw.setVideoURI(uri);
             vw.requestFocus();
             mediaController.setAnchorView(vw);
             vw.setMediaController(mediaController);
             vw.start();
+            vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(PlayScene.this,QuizPage.class);
+                    intent.putExtra("id", scene);
+                    startActivity(intent);
+                }
+            });
         }
 
     }

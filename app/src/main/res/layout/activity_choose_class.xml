@@ -17,5 +17,5 @@
         android:verticalSpacing="24dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="spacingWidthUniform"
-        android:listSelector="#0f0"/>/>
+        android:listSelector="#0f0" />
 </LinearLayout>
