@@ -1,6 +1,8 @@
 package com.example.nicksplayground;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,8 +25,8 @@ import cz.msebera.android.httpclient.Header;
 public class ResultPage extends AppCompatActivity {
 
     ListView lvStudent;
-    ArrayList<String> alStudentList;
-    ArrayAdapter<String> aaStudent;
+    ArrayList<Student> alStudentList;
+    ArrayAdapter<Student> aaStudent;
     AsyncHttpClient client;
     String id = "";
     @Override
@@ -35,7 +37,7 @@ public class ResultPage extends AppCompatActivity {
         client = new AsyncHttpClient();
 
         alStudentList = new ArrayList<>();
-        aaStudent = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,alStudentList);
+        final StudentAdapter aaStudent = new StudentAdapter(this,R.layout.student_row,alStudentList);
 
         client.get("https://nicksplaygroundfyp2019.000webhostapp.com/getStudents.php",new JsonHttpResponseHandler(){
             @Override
@@ -46,8 +48,10 @@ public class ResultPage extends AppCompatActivity {
                         JSONObject jsonObj = response.getJSONObject(i);
                         id = jsonObj.getString("student_id");
                         String name = jsonObj.getString("student");
+                        int sid = Integer.parseInt(id);
                         String place = jsonObj.getString("class");
-                        alStudentList.add(name);
+                        Student student = new Student(sid,name);
+                        alStudentList.add(student);
                     }
 
                 }catch (JSONException e){
@@ -59,13 +63,17 @@ public class ResultPage extends AppCompatActivity {
                 lvStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent i2 = new Intent(ResultPage.this,SubmitQuizReport.class);
-                        Object o = adapterView.getItemAtPosition(i);
-                        String name = o.toString();
-                        i2.putExtra("student",name);
-                        i2.putExtra("s_id", id);
-                        Log.i("tret", id);
+                        Student selectedstudent = alStudentList.get(i);
+                        Intent i2 = new Intent(ResultPage.this,ChooseEnviroment.class);
+                        String id = String.valueOf(selectedstudent.getId());
+                        String name = selectedstudent.getName();
                         startActivity(i2);
+
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ResultPage.this);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("student_name", name);
+                        editor.putString("s_id", id);
+                        editor.commit();
                     }
                 });
 

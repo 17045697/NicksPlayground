@@ -31,9 +31,9 @@ public class ChooseClass extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // set an Intent to Another Activity
-                Intent intent = new Intent(ChooseClass.this, ChooseEnviroment.class);
-                intent.putExtra("class", lesson[position]);
-                intent.putExtra("time", timing[position]);
+                Intent intent = new Intent(ChooseClass.this, ResultPage.class);
+                //intent.putExtra("class", lesson[position]);
+                //intent.putExtra("time", timing[position]);
                 startActivity(intent); // start Intent
 
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ChooseClass.this);
