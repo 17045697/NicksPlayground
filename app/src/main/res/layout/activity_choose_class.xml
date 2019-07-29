@@ -14,8 +14,10 @@
         android:gravity="center"
         android:columnWidth="150dp"
         android:numColumns="2"
-        android:verticalSpacing="24dp"
-        android:horizontalSpacing="10dp"
+        android:verticalSpacing="15dp"
+        android:horizontalSpacing="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:stretchMode="spacingWidthUniform"
         android:listSelector="#0f0" />
 </LinearLayout>

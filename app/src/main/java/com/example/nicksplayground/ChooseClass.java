@@ -15,8 +15,8 @@ import com.loopj.android.http.AsyncHttpClient;
 public class ChooseClass extends AppCompatActivity {
 
     GridView gv;
-    String[] lesson = {"Responsibility","Responsibility","Respect","Respect","Resilience","Resilience"};
-    String[] timing = {"AM","PM","AM","PM","AM","PM"};
+    String[] lesson = {"Responsibility AM","Responsibility PM","Respect AM","Respect PM","Resilience AM","Resilience PM"};
+    //String[] timing = {"AM","PM","AM","PM","AM","PM"};
     AsyncHttpClient client;
 
     @Override
@@ -25,7 +25,7 @@ public class ChooseClass extends AppCompatActivity {
         setContentView(R.layout.activity_choose_class);
         gv = (GridView) findViewById(R.id.gridview);
         client = new AsyncHttpClient();
-        ClassAdapter customAdapter = new ClassAdapter(this, lesson,timing);
+        ClassAdapter customAdapter = new ClassAdapter(this, lesson);
         gv.setAdapter(customAdapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class ChooseClass extends AppCompatActivity {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ChooseClass.this);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("class", lesson[position]);
-                editor.putString("timing", timing[position]);
+                //editor.putString("timing", timing[position]);
                 editor.commit();
             }
         });

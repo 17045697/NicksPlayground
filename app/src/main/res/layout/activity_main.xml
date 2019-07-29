@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
+    android:background="@android:color/background_light"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -12,18 +12,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="357dp"
+        android:layout_height="374dp"
         app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/tvUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="Username:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <EditText
         android:id="@+id/etUser"
@@ -31,19 +21,14 @@
         android:layout_height="47dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/rounded_border_edittext"
         android:ems="10"
+        android:hint=" Username"
         android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/tvPassword"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="Password:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:layout_height="19dp" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -51,13 +36,14 @@
         android:layout_height="44dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/rounded_border_edittext"
         android:ems="10"
+        android:hint=" Password"
         android:inputType="textPersonName" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="52dp" />
+        android:layout_height="24dp" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -65,6 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@drawable/rounded_button"
         android:text="Login" />
 </LinearLayout>

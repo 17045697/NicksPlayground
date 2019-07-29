@@ -87,7 +87,7 @@ public class PlayScene extends AppCompatActivity {
             vw.setVideoURI(uri);
             vw.requestFocus();
             mediaController.setAnchorView(vw);
-            vw.addSubtitleSource(getResources().openRawResource(R.raw.en), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
+            vw.addSubtitleSource(getResources().openRawResource(R.raw.ch), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
             vw.setMediaController(mediaController);
             vw.start();
             vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -123,6 +123,7 @@ public class PlayScene extends AppCompatActivity {
             vw.requestFocus();
             mediaController.setAnchorView(vw);
             vw.setMediaController(mediaController);
+            vw.addSubtitleSource(getResources().openRawResource(R.raw.ml), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
             vw.start();
             vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override

@@ -90,7 +90,7 @@ public class QuizPage extends AppCompatActivity {
                                 final String student_id = prefs.getString("s_id","");
                                 Log.i("student_id",student_id);
                                 String classname = prefs.getString("class","");
-                                String timing = prefs.getString("timing","");
+                                //String timing = prefs.getString("timing","");
                                 final String quizQns = prefs.getString("question","");
                                 final String quizID = prefs.getString("quizID","");
                                 final String questionID = prefs.getString("questionID", "");
@@ -149,7 +149,7 @@ public class QuizPage extends AppCompatActivity {
                                 final String student_id = prefs.getString("s_id","");
                                 Log.i("student_id",student_id);
                                 String classname = prefs.getString("class","");
-                                String timing = prefs.getString("timing","");
+                                //String timing = prefs.getString("timing","");
                                 final String quizQns = prefs.getString("question","");
                                 final String quizID = prefs.getString("quizID","");
                                 final String questionID = prefs.getString("questionID", "");
