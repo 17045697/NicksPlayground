@@ -39,7 +39,7 @@
         android:background="@drawable/rounded_border_edittext"
         android:ems="10"
         android:hint=" Password"
-        android:inputType="textPersonName" />
+        android:inputType="textPassword"/>
 
     <Space
         android:layout_width="match_parent"
