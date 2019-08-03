@@ -11,6 +11,13 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ChooseClass extends AppCompatActivity {
 
@@ -25,6 +32,9 @@ public class ChooseClass extends AppCompatActivity {
         setContentView(R.layout.activity_choose_class);
         gv = (GridView) findViewById(R.id.gridview);
         client = new AsyncHttpClient();
+
+
+
         ClassAdapter customAdapter = new ClassAdapter(this, lesson);
         gv.setAdapter(customAdapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

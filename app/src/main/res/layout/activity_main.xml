@@ -24,7 +24,8 @@
         android:background="@drawable/rounded_border_edittext"
         android:ems="10"
         android:hint=" Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textAlignment="center"/>
 
     <Space
         android:layout_width="match_parent"
@@ -39,7 +40,8 @@
         android:background="@drawable/rounded_border_edittext"
         android:ems="10"
         android:hint=" Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:textAlignment="center"/>
 
     <Space
         android:layout_width="match_parent"

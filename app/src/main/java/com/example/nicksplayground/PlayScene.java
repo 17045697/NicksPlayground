@@ -116,6 +116,23 @@ public class PlayScene extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+        }else if(scene == 3){
+            String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.mrt;
+            Uri uri = Uri.parse(uriPath);
+            vw.setVideoURI(uri);
+            vw.requestFocus();
+            mediaController.setAnchorView(vw);
+            vw.setMediaController(mediaController);
+            vw.addSubtitleSource(getResources().openRawResource(R.raw.ml), MediaFormat.createSubtitleFormat("text/vtt", Locale.ENGLISH.getLanguage()));
+            vw.start();
+            vw.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    Intent intent = new Intent(PlayScene.this,QuizPage.class);
+                    intent.putExtra("id", scene);
+                    startActivity(intent);
+                }
+            });
         }else{
             String uriPath = "android.resource://" + getPackageName() + "/" + R.raw.mrt;
             Uri uri = Uri.parse(uriPath);
